@@ -1,4 +1,6 @@
 🚀 Ejercicio #2: Inventario Inteligente con Django y IA
+
+
 📋 El Desafío
 El objetivo es desarrollar un sistema de inventario backend utilizando Python y Django. Este sistema gestionará un catálogo de productos almacenado en la base de datos por defecto, SQLite.
 
@@ -28,5 +30,5 @@ Hola, los productos disponibles en el inventario son:
 * Teclado Mecánico RGB (15 unidades)
 * Mouse Inalámbrico (30 unidades)
 * Monitor 24 pulgadas (10 unidades)
-* 
+  
 <img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/ce04528e-32bf-43d1-8c8c-1da0bb79c351" />
