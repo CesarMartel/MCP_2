@@ -1,34 +1,119 @@
-🚀 Ejercicio #2: Inventario Inteligente con Django y IA
+# 🚀 Ejercicio #2: Inventario Inteligente con Django y IA
 
+## 📋 Descripción del Proyecto
 
-📋 El Desafío
-El objetivo es desarrollar un sistema de inventario backend utilizando Python y Django. Este sistema gestionará un catálogo de productos almacenado en la base de datos por defecto, SQLite.
+Este proyecto implementa un sistema de inventario backend utilizando Python y Django con integración de IA. El sistema gestiona un catálogo de productos almacenado en SQLite y permite consultar el inventario disponible mediante inteligencia artificial.
 
-Requisitos de la Base de Datos
-Debe contener un mínimo de 4 productos de ejemplo.
+## 🎯 Funcionalidades
 
-Cada producto debe tener: nombre, descripción y cantidad.
+- Sistema de inventario con productos (nombre, descripción, cantidad)
+- Base de datos SQLite para almacenamiento
+- Integración con IA para consultas en lenguaje natural
+- Script de consulta que lista solo productos con stock disponible
 
-Es crucial que al menos uno de los productos tenga una cantidad de cero (0) para simular y probar el manejo de stock agotado.
+## 📦 Instalación y Configuración
 
-🎯 Entregable y Resultado Esperado
-El entregable final es el proyecto Django completo junto con un script principal, consultar_inventario.py, que demuestra la interacción con la IA.
+### Prerrequisitos
 
-Funcionalidad Clave
-Al ejecutar consultar_inventario.py, el script debe realizar una única acción: preguntarle a la IA qué productos están disponibles en el inventario.
+- Python 3.8 o superior
+- pip (gestor de paquetes de Python)
+- Cuenta de Google Cloud con Vertex AI habilitado
+- Google Cloud CLI instalado (opcional, pero recomendado)
 
-La IA, a su vez, debe leer la base de datos y generar una respuesta en lenguaje natural, listando únicamente los productos cuyo stock sea mayor a cero.
+### Pasos para configurar el proyecto
 
-Ejemplo de Ejecución
-La salida en la terminal debe ser limpia y directa, como se muestra a continuación:
+1. **Clonar el repositorio**
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+   cd MCP_2
+   ```
 
-Shell
+2. **Crear un entorno virtual (recomendado)**
+   ```bash
+   python -m venv venv
+   
+   # En Windows:
+   venv\Scripts\activate
+   
+   # En Linux/Mac:
+   source venv/bin/activate
+   ```
 
-> python consultar_inventario.py
+3. **Instalar dependencias**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Hola, los productos disponibles en el inventario son:
-* Teclado Mecánico RGB (15 unidades)
-* Mouse Inalámbrico (30 unidades)
-* Monitor 24 pulgadas (10 unidades)
-  
-<img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/ce04528e-32bf-43d1-8c8c-1da0bb79c351" />
+4. **Configurar Google Cloud (requerido para IA)**
+   
+   **Opción A: Autenticación con cuenta de servicio (recomendado para producción)**
+   ```bash
+   # Descarga el archivo JSON de credenciales de Google Cloud
+   # Luego configura la variable de entorno:
+   export GOOGLE_APPLICATION_CREDENTIALS="ruta/al/archivo/credenciales.json"
+   ```
+   
+   **Opción B: Autenticación con gcloud CLI (recomendado para desarrollo)**
+   ```bash
+   # Instala Google Cloud CLI y autentica:
+   gcloud auth application-default login
+   ```
+   
+   **Importante:** Asegúrate de que tu proyecto de Google Cloud tenga habilitado Vertex AI y que el PROJECT_ID en `consultas.py` coincida con tu proyecto.
+
+5. **Aplicar migraciones de la base de datos**
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrations
+
+   ```
+
+6. **Crear datos de ejemplo si quiere mrd**
+   ```bash
+   python manage.py shell
+   ```
+   
+   En el shell de Django, ejecuta:
+   ```python
+   from inventario.models import Productos
+   
+   # Crear productos de ejemplo
+   Productos.objects.create(
+       nombre="Teclado Mecánico RGB",
+       descripcion="Teclado mecánico con retroiluminación RGB",
+       cantidad=15
+   )
+   
+   Productos.objects.create(
+       nombre="Mouse Inalámbrico",
+       descripcion="Mouse inalámbrico ergonómico",
+       cantidad=30
+   )
+   
+   Productos.objects.create(
+       nombre="Monitor 24 pulgadas",
+       descripcion="Monitor Full HD de 24 pulgadas",
+       cantidad=10
+   )
+   
+   Productos.objects.create(
+       nombre="Auriculares Bluetooth",
+       descripcion="Auriculares inalámbricos con cancelación de ruido",
+       cantidad=0  # Producto sin stock
+   )
+   
+   exit()
+   ```
+   
+7. **Ejecutar el script de consulta**
+   ```bash
+   python consultar_inventario.py
+   ```
+
+## 🚀 Uso del Sistema
+
+### Ejecutar consultas de inventario
+
+```bash
+python consultar_inventario.py
+```
