@@ -1,3 +1,4 @@
+#disculpeme mi estimado
 #paso 1 biblioteca y configuracion
 from dis import Instruction
 import os
